@@ -30,8 +30,3 @@ b = [[1, 2, 3, 4], [5, 0, 7, 8], [9, 10, 0, 12],[13, 14, 15, 16]]
 print(zero_matrix(b))
 
 
-def left_rotate(a, d):
-
-    for i in range(d):
-        temp = a[0]
-        a.remove(a[0])
