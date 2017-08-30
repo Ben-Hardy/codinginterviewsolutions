@@ -12,6 +12,10 @@ public class LinkedNode<T> {
 		return this.item; 
 	}
 	
+	public void setItem(T item) {
+		this.item = item;
+	}
+	
 	public LinkedNode<T> getNext() {
 		return this.next; 
 	}

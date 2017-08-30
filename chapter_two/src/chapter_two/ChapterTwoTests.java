@@ -71,7 +71,8 @@ public class ChapterTwoTests {
 		list2.removeNthElement(1);
 		assertEquals(1, list2.getSize());
 		assertEquals((Integer)2, list2.getCur().getItem());
-		
+		list2.prepend(100);
+		assertEquals(2, list2.getSize());
 		
 	}
 
@@ -87,16 +88,81 @@ public class ChapterTwoTests {
 		l.append(5);
 		System.out.println(l.toString());
 		ChapterTwo c = new ChapterTwo();
-		l = c.twoPointOne(l);
+		l = c.two_one(l);
 		System.out.println(l.toString());
 		
 		LinkedList<Integer> l2 = new LinkedList<Integer>();
 		l2.append(1);
 		l2.append(1);
 		System.out.println(l2.toString());
-		l2 = c.twoPointOne(l2);
+		l2 = c.two_one(l2);
 		System.out.println(l2.toString());
+	}
+	
+	@Test
+	public void two_two() {
+		LinkedList<Integer> l = new LinkedList<Integer>();
+		l.append(1);
+		l.append(2);
+		l.append(3);
+		l.append(4);
+		l.append(5);
+		l.append(7);
+		l.append(9);
+		l.append(12);
+		ChapterTwo c = new ChapterTwo();
+		assertEquals((Integer)4, c.two_two(l, 5).getItem());
+		assertEquals((Integer)12, c.two_two(l, 1).getItem());
+		assertEquals((Integer)7, c.two_two(l, 3).getItem());
+		assertEquals((Integer)1, c.two_two(l, 8).getItem());
+		assertEquals(c.two_two(l, 9), null); 
 		
+		l.goFirst();
+		l.goNext();
+		l.goNext(); // at 3
+		c.two_three(l.getCur()); // remove 3
+		System.out.println(l.toString());
+		l.recalculateSize();
+		System.out.println(l.getSize());
+	}
+	
+	@Test
+	public void two_three() {
+		LinkedList<Integer> l = new LinkedList<Integer>();
+		l.append(1);
+		l.append(2);
+		l.append(3);
+		l.append(4);
+		l.append(5);
+		l.append(7);
+		l.append(9);
+		l.append(12);
+		
+		ChapterTwo c = new ChapterTwo();
+		
+		l.goFirst();
+		l.goNext();
+		l.goNext(); // at 3
+		c.two_three(l.getCur()); // remove 3
+		//System.out.println(l.toString());
+		l.recalculateSize();
+		//System.out.println(l.getSize());
+	}
+	
+	@Test
+	public void two_four() {
+		LinkedList<Integer> l1 = new LinkedList<Integer>();
+		l1.append(3);
+		l1.append(5);
+		l1.append(8);
+		l1.append(5);
+		l1.append(10);
+		l1.append(2);
+		l1.append(1);
+		
+		ChapterTwo c = new ChapterTwo();
+		LinkedList<Integer> l2 = c.two_four(l1, 5);
+		System.out.println(l2.toString());
 	}
 	
 	

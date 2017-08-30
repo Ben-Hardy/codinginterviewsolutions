@@ -61,6 +61,19 @@ public class LinkedList<T> {
 		}
 	}
 	
+	public void prepend(T item) {
+		if (size == 0) {
+			append(item);
+		} else {
+			LinkedNode<T> newNode = new LinkedNode<T>(item);
+			newNode.setNext(head);
+			head = newNode;
+			size++;
+		}
+		
+	}
+	
+	
 	// removes item from list. If multiple entries of item, removes first
 	// encountered entry
 	public void remove(T item) {
@@ -118,6 +131,22 @@ public class LinkedList<T> {
 				counter++;
 			}
 			cursor.setNext(cursor.getNext().getNext());
+		}
+	}
+	
+	// made this specifically for if we do in-place deletions that
+	// will cause the list size to not be synced. Basically caused by
+	// two_three
+	public void recalculateSize() {
+		if (head == null) {
+			size = 0;
+			return;
+		}
+		size = 1;
+		goFirst();
+		while (cursor.hasNext()) {
+			size++;
+			this.goNext();
 		}
 	}
 	
