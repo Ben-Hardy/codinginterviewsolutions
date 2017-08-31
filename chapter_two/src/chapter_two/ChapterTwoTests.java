@@ -43,17 +43,17 @@ public class ChapterTwoTests {
 		assertEquals((Integer) 3, l.getCur().getItem()); // yay it didn't work
 		l.append(4);
 		assertEquals(4, l.getSize());
-		//System.out.println(l.toString());
+
 		l.remove(3);
-		//System.out.println(l.toString());
+
 		assertEquals(3, l.getSize());
 		l.append(3);
 		l.append(6);
-		//System.out.println(l.toString());
+
 		l.removeNthElement(3);
-		//System.out.println(l.toString());
+
 		l.removeNthElement(4);
-		//System.out.println(l.toString());
+
 		
 		// creating a list with an item, AKA the overloaded constructor thingy
 		LinkedList<Integer> list2 = new LinkedList<Integer>(1);
@@ -78,7 +78,6 @@ public class ChapterTwoTests {
 
 	@Test
 	public void two_one() {
-		System.out.println("2.1 Tests!\n\nList before deduping:");
 		LinkedList<Integer> l = new LinkedList<Integer>();
 		l.append(1);
 		l.append(1);
@@ -86,17 +85,19 @@ public class ChapterTwoTests {
 		l.append(3);
 		l.append(1);
 		l.append(5);
-		System.out.println(l.toString());
+		assertEquals(l.getSize(), 6);
+
 		ChapterTwo c = new ChapterTwo();
 		l = c.two_one(l);
-		System.out.println(l.toString());
+		assertEquals(l.getSize(), 4); // should remove 2 duplicate 1s
 		
+		// test for small list
 		LinkedList<Integer> l2 = new LinkedList<Integer>();
 		l2.append(1);
 		l2.append(1);
-		System.out.println(l2.toString());
+		assertEquals(l2.getSize(),2);
 		l2 = c.two_one(l2);
-		System.out.println(l2.toString());
+		assertEquals(l2.getSize(),1);
 	}
 	
 	@Test
@@ -116,14 +117,6 @@ public class ChapterTwoTests {
 		assertEquals((Integer)7, c.two_two(l, 3).getItem());
 		assertEquals((Integer)1, c.two_two(l, 8).getItem());
 		assertEquals(c.two_two(l, 9), null); 
-		
-		l.goFirst();
-		l.goNext();
-		l.goNext(); // at 3
-		c.two_three(l.getCur()); // remove 3
-		System.out.println(l.toString());
-		l.recalculateSize();
-		System.out.println(l.getSize());
 	}
 	
 	@Test
@@ -144,9 +137,13 @@ public class ChapterTwoTests {
 		l.goNext();
 		l.goNext(); // at 3
 		c.two_three(l.getCur()); // remove 3
-		//System.out.println(l.toString());
+		l.goFirst();
+		l.goNext();
+		l.goNext();
+		// 3rd element should now be 4
+		assertEquals(l.getCur().getItem(), (Integer)4);
 		l.recalculateSize();
-		//System.out.println(l.getSize());
+		assertEquals(l.getSize(), 7);
 	}
 	
 	@Test
@@ -162,7 +159,25 @@ public class ChapterTwoTests {
 		
 		ChapterTwo c = new ChapterTwo();
 		LinkedList<Integer> l2 = c.two_four(l1, 5);
-		System.out.println(l2.toString());
+	}
+	
+	@Test
+	public void two_five() {
+		LinkedList<Integer> l1 = new LinkedList<Integer>();
+		LinkedList<Integer> l2 = new LinkedList<Integer>();
+		
+		l1.append(7);
+		l1.append(1);
+		l1.append(6);
+		l2.append(5);
+		l2.append(9);
+		l2.append(2);
+		
+		ChapterTwo c = new ChapterTwo();
+		
+		LinkedList<Integer> res = c.two_five(l1, l2);
+		System.out.println(res.toString());
+		
 	}
 	
 	

@@ -131,6 +131,7 @@ public class LinkedList<T> {
 				counter++;
 			}
 			cursor.setNext(cursor.getNext().getNext());
+			size--;
 		}
 	}
 	

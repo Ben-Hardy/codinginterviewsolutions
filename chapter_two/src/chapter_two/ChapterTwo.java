@@ -2,6 +2,9 @@ package chapter_two;
 
 import java.util.ArrayList;
 
+import javax.activation.MailcapCommandMap;
+
+import java.lang.Math;
 public class ChapterTwo {
 
 	/*
@@ -38,6 +41,7 @@ public class ChapterTwo {
 			}	
 		}
 		return list;
+		
 	}
 	
 	
@@ -128,7 +132,6 @@ public class ChapterTwo {
 		list.goFirst();
 		newList.append(list.getCur().getItem());
 		while (list.getCur().hasNext()) {
-			System.out.println(list.getCur().getNext().getItem());
 			if (list.getCur().getNext().getItem() < partition) {
 				newList.prepend(list.getCur().getNext().getItem());
 			} else {
@@ -139,5 +142,60 @@ public class ChapterTwo {
 		
 		return newList;
 	}
+	
+	/*
+	 * 2.5
+	 * Sum Lists: You have two numbers represented by a linked list, where each
+	 * node contains a single digit. The digits are stored in reverse order,
+	 * such that the 1's digit is at the end of the list. Write a function that
+	 * adds the two numbers and returns the sum as a linked list.
+	 */
+	
+	public LinkedList<Integer> two_five(LinkedList<Integer> first, LinkedList<Integer> second) {
+		
+		if (first.getSize() == 0 && second.getSize() == 0) {
+			return new LinkedList<Integer>(0);
+		}
+		
+		first.goFirst();
+		second.goFirst();
+		
+		if (first.getSize() == 0 && second.getSize() == 1) {
+			return new LinkedList<Integer>(second.getCur().getItem());
+		}
+		else if (first.getSize() == 1 && second.getSize() == 0) {
+			return new LinkedList<Integer>(first.getCur().getItem());
+		}
+		
+		LinkedList<Integer> result = new LinkedList<Integer>();
+		int total;
+		
+		if (first.getSize() == 1 && second.getSize() == 1) {
+			total = first.getCur().getItem() + second.getCur().getItem();
+		}
+		else {
+			int firstTotal = first.getCur().getItem();
+			
+			for (int i = 1; i < first.getSize(); i++) {
+				firstTotal += first.getCur().getNext().getItem() * (int) Math.pow(10, i);
+				first.goNext();
+			}
+	
+			
+	
+			int secondTotal = second.getCur().getItem();
+			for (int i = 1; i < second.getSize(); i++) {
+				secondTotal += second.getCur().getNext().getItem() * (int) Math.pow(10, i);
+				second.goNext();
+			}
+			total = firstTotal + secondTotal;
+		}
+		while (total > 0) {
+			result.append(total % 10);
+			total /= 10;
+		}
+		return result;
+	}
+	
 	
 }
