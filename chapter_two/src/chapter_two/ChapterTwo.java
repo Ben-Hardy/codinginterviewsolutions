@@ -2,8 +2,6 @@ package chapter_two;
 
 import java.util.ArrayList;
 
-import javax.activation.MailcapCommandMap;
-
 import java.lang.Math;
 public class ChapterTwo {
 

@@ -51,8 +51,35 @@ public class ChapterThreeTest {
 		for (int i = 9; i < 50; i++) {
 			s.push(i);
 		}
-		System.out.println(s.toString());
+		//System.out.println(s.toString());
 		
 	}
 
+	@Test
+	public void MyQueueTest() {
+		MyQueue<Integer> q = new MyQueue<Integer>();
+		// make sure the queue is empty
+		assertEquals(true, q.isEmpty());
+		q.enqueue(1);
+		// make sure that non-empty queue is in right state
+		assertEquals(1, q.getSize());
+		assertEquals(false, q.isEmpty());
+		assertEquals(1, q.enqueueStack.getSize());
+		assertEquals(0, q.dequeueStack.getSize());
+		q.enqueue(2);
+		q.enqueue(3);
+		q.dequeue();
+		// make sure that queues are correctly flipped
+		//System.out.println(q.toString());
+		//q.flip();
+		//System.out.println(q.toString());
+		//q.flip();
+		//System.out.println(q.toString());
+		assertEquals(0, q.enqueueStack.getSize());
+		assertEquals(2, q.dequeueStack.getSize());
+		q.enqueue(4);
+		assertEquals(3, q.enqueueStack.getSize());
+		assertEquals(0, q.dequeueStack.getSize());
+		
+	}
 }

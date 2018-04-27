@@ -158,6 +158,7 @@ public class ChapterTwoTests {
 		l1.append(1);
 		
 		ChapterTwo c = new ChapterTwo();
+		@SuppressWarnings("unused")
 		LinkedList<Integer> l2 = c.two_four(l1, 5);
 	}
 	

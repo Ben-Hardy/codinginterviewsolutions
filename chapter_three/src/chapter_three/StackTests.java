@@ -21,8 +21,10 @@ public class StackTests {
 	public void stackTest() {
 		Stack<Integer> s = new Stack<Integer>();
 		assertEquals(s.getSize(), 0);
+		assertEquals(s.isEmpty(), true);
 		s.push(1);
 		assertEquals(s.getSize(), 1);
+		assertEquals(s.isEmpty(), false);
 		assertEquals(s.peek(), (Integer)1);
 		assertEquals(s.pop(), (Integer)1);
 		assertEquals(s.getSize(), 0);
@@ -34,6 +36,7 @@ public class StackTests {
 		s.pop();
 		s.pop();
 		assertEquals(s.toString(), null);
+		assertEquals(s.isEmpty(), true);
 		
 		
 	}

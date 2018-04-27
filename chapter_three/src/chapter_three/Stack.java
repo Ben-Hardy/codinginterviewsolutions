@@ -27,6 +27,10 @@ public class Stack<T> {
 		return item;
 	}
 	
+	public Boolean isEmpty() {
+		return size == 0;
+	}
+	
 
 	public int getSize() {
 		return size;
