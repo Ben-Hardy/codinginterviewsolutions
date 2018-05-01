@@ -20,6 +20,12 @@ public class BinaryTree<T> {
 			return 2 + numChildren(node.getLeft()) + numChildren(node.getRight());
 	}
 	
+	/*
+	 * This recursive insert method is perhaps overkill
+	 * It adds nodes in a balanced fashion. It always adds
+	 * one to the left side and the the right side over and
+	 * over. The tree will be forced to be balanced this way.
+	 */
 	public void insert(T item) {
 		if (!root.hasLeft())
 			root.setLeft(new BinaryTreeNode<T>(item));
@@ -35,6 +41,16 @@ public class BinaryTree<T> {
 	}
 	
 	private void insertHelper(T item, BinaryTreeNode<T> node) {
-		
+		if (!node.hasLeft())
+			node.setLeft(new BinaryTreeNode<T>(item));
+		else if (!node.hasRight())
+			node.setRight(new BinaryTreeNode<T>(item));
+		else {
+			if (this.numChildren(node.getLeft()) <= this.numChildren(node.getRight())) {
+				insertHelper(item, node.getLeft());
+			}
+			else
+				insertHelper(item, node.getRight());
+		}
 	}
 }
